@@ -18,5 +18,15 @@ services:
       - "8000:8000"
     container_name: blog-server
     restart: always
-    # links:
-    #   - database
+    links:
+      - database
+  
+  database:
+    image: mysql
+    ports:
+      - "3307:3307"
+    container_name: blog-database
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_TCP_PORT=3307
